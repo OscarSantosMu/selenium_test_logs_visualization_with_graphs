@@ -161,3 +161,4 @@ cython_debug/
 
 # User ignores
 backup/
+src/app/static/network_logs.json
