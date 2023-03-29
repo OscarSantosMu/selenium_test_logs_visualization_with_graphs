@@ -7,14 +7,16 @@ import pandas as pd
 
 
 def read_logs(day: int = None):
-    status_codes = []
-    mime_types = []
+
     days = []
+    total_status_codes = []
+    total_mime_types = []
     with current_app.open_resource(
         os.path.join("static", "network_logs.json")
     ) as logs_file:
         logs = json.loads(logs_file.read())
-
+        status_codes = []
+        mime_types = []
         if day:
             logs = logs[day - 1]
             for log in logs["logs"]:
@@ -29,12 +31,17 @@ def read_logs(day: int = None):
             df = pd.DataFrame()
             for day, log_at in enumerate(logs):
 
+                status_codes = []
+                mime_types = []
+
                 for log in log_at["logs"]:
 
                     if "response" in log:
                         days.append(day)
                         status_codes.append(log["response"]["status"])
                         mime_types.append(log["response"]["mimeType"])
+                        total_status_codes.append(log["response"]["status"])
+                        total_mime_types.append(log["response"]["mimeType"])
 
                 status_codes_counter = Counter(status_codes)
                 mime_types_counter = Counter(mime_types)
@@ -56,5 +63,5 @@ def read_logs(day: int = None):
                     ],
                     ignore_index=True,
                 )
-            count = len(status_codes) + len(mime_types)
+            count = len(total_status_codes) + len(total_mime_types)
             return count, df
