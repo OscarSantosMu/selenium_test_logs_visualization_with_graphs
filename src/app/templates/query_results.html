@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1>Search Results</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Day</th>
+      <th>Mime Types</th>
+      <th>Mime Types Count</th>
+      <th>Status Codes</th>
+      <th>Status Codes Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for hit in hits %}
+    <tr>
+      <td>{{ hit["_id"] }}</td>
+      <td>{{ hit["_source"]["day"] }}</td>
+      <td>
+        {% if hit["_source"]["mime_types"] != 0.0 %}
+            {{ hit["_source"]["mime_types"] }}
+        {% endif %}
+      </td>
+      <td>
+        {% if hit["_source"]["mime_types_count"] != 0.0 %}
+            {{ hit["_source"]["mime_types_count"]|int }}
+        {% endif %}
+      </td>
+      <td>
+        {% if hit["_source"]["status_codes"] != 0.0 %}
+            {{ hit["_source"]["status_codes"]|int }}
+        {% endif %}
+      </td>
+      <td>
+        {% if hit["_source"]["status_codes_count"] != 0.0 %}
+            {{ hit["_source"]["status_codes_count"]|int }}
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+{% endblock content %}
