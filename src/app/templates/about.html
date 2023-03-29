@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="pb-5">
+    <h1>Assignment</h1>
+    <hr>
+    <h2>Test Logs Visualization with Graphs</h2>
+    <hr>
+    <p>As a company, I run ~2 Million Selenium test Network logs a day on cloud. Build an ability to graphically visualize the logs using a low end resource cloud architecture framework. This code should be able to package and run on self-hosted machines or on cloud with proxy settings and public APIs for subscribed customers.<p>
+
+    <h2>Task instructions</h2>
+    <p>The following are the prerequisites for the task:</p>
+
+    <ul>
+    <li>Setup Selenium on your local machine</li>
+    <li>Write the script for opening the URL (https://www.lambdatest.com/)</li>
+    <li>Click on each header navigation items</li>
+    <li>Store the network logs generated on the browser to your local machine.</li>
+    <li>Repeat the process for more than 100 tests</li>
+    <li>The following are the requirements for the task: Use a lightweight graph library which can render a time series of 365 days on the x-axis and y-axis should be the following:</li>
+    </ul>
+
+    Total count of logs
+    <ul>
+    <li>Logs count/average stacked by log type (mime-type)</li>
+    <li>Logs count/average stacked by log level (Status Codes)</li>
+    <li>Logs should be able to filter on the UI by any available key-value.</li>
+    <li>Logs should be searchable with a keyword using an API to fetch the results.</li>
+    </ul>
+
+    <p>You can use the recommended tech stack for developing this fullstack application:</p>
+
+    <ul>
+    <li>ElasticSearch or any text search engine.</li>
+    <li>ReactJS</li>
+    <li>Go lang (or) Python for server</li>
+    </ul>
+</div>
+
+
+{% endblock content %}
