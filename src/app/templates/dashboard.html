@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+  <div class="card-body">
+  <h5 class="card-title">Total count of logs</h5>
+  <p class="card-text">{{ total_count_of_logs }}</p>
+  </div>
+</div>
+
+<form method="GET" action="{{ url_for('main.dashboard_day', day=0) }}">
+  <div class="input-group">
+    <label class="input-group-text" for="day-select">Select a day:</label>
+    <select class="form-select" id="day-select" name="day">
+      {% for d in range(1, 366) %}
+        <option value="{{ d }}" {% if d == current_day %}selected{% endif %}>{{ d }}</option>
+      {% endfor %}
+    </select>
+    <button class="btn btn-primary" type="submit">Go</button>
+  </div>
+</form>
+
+
+{{ plot_html|safe }}
+
+{% endblock content %}
