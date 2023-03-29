@@ -1,0 +1,29 @@
+name: Run Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_call:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Run Tests
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9.16'
+        
+      - name: Setup Python Virtual Environment
+        run: python -m venv env
+
+      - name: Install Dependencies
+        run: env/bin/pip install -r requirements.txt
+
+      - name: Run Tests
+        run: env/bin/python -m unittest discover -v tests/
