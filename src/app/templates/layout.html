@@ -26,10 +26,35 @@
             <a class="nav-link" href="{{ url_for('main.dashboard') }}">Dashboard</a>
           </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+        
+        <form class="d-flex" role="search" action="{{ url_for('elasticsearch.search') }}" method="POST">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="day" id="day" value="1">
+                <label class="form-check-label" for="day">Day</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="mime_types" id="mime_types" value="1">
+                <label class="form-check-label" for="mime_types">MIME Types</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="mime_types_count" id="mime_types_count" value="1">
+                <label class="form-check-label" for="mime_types_count">MIME Types Count</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="status_codes" id="status_codes" value="1">
+                <label class="form-check-label" for="status_codes">Status Codes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="status_codes_count" id="status_codes_count" value="1">
+                <label class="form-check-label" for="status_codes_count">Status Codes Count</label>
+            </div>
+            <div class="input-group">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="query">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </div>
         </form>
+
+
       </div>
     </div>
   </nav>
