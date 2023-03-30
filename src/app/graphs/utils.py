@@ -5,9 +5,12 @@ from collections import Counter
 from flask import current_app
 import pandas as pd
 
+from .. import cache
 
+
+@cache.memoize(timeout=3600)
 def read_logs(day: int = None):
-
+    # print("Calculating read_logs...")
     days = []
     total_status_codes = []
     total_mime_types = []

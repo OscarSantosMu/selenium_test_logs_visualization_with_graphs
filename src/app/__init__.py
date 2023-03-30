@@ -1,6 +1,7 @@
 import json
 
 from flask import Flask
+from flask_caching import Cache
 from elasticsearch import Elasticsearch
 
 from .config import Config
@@ -19,9 +20,15 @@ except Exception as e:
     print("Elasticsearch() ERROR:", e, "\n")
     es = None
 
+cache = Cache(config={"CACHE_TYPE": "simple"})
+
 
 def create_app():
     app = Flask(__name__)
+    app.config["CACHE_TYPE"] = "simple"
+    app.config["CACHE_DEFAULT_TIMEOUT"] = 300
+
+    cache.init_app(app)
 
     from .main.routes import main
     from .elasticsearch.routes import elasticsearch
