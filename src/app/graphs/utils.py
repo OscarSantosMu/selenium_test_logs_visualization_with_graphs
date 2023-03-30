@@ -1,3 +1,7 @@
+"""Module from graphs subpackage with utilities for file reading, caching and graphs."""
+
+__docformat__ = "google"
+
 import os
 import json
 from collections import Counter
@@ -9,7 +13,15 @@ from .. import cache
 
 
 @cache.memoize(timeout=3600)
-def read_logs(day: int = None):
+def read_logs(day: int = None) -> tuple:
+    """Return the logs from the network_logs.json file.
+
+    Args:
+        day: logs from this day. Defaults to None.
+
+    Returns:
+        Tuple with the information from the logs.
+    """
     # print("Calculating read_logs...")
     days = []
     total_status_codes = []
