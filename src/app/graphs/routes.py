@@ -1,3 +1,7 @@
+"""Module from graphs subpackage with routes for Dashboard features."""
+
+__docformat__ = "google"
+
 from collections import Counter
 
 from flask import render_template, request, redirect, url_for, Blueprint
@@ -12,6 +16,11 @@ graphs = Blueprint("graphs", __name__)
 
 @graphs.route("/dashboard")
 def dashboard():
+    """Return the dashboard page.
+
+    Returns:
+        Rendered template with the dashboard page.
+    """
     total_count, df = read_logs()
 
     # Generate Plotly subplots and create figure
@@ -48,6 +57,14 @@ def dashboard():
 
 @graphs.route("/dashboard/day/<int:day>")
 def dashboard_day(day: int):
+    """Return a dashboard of bar charts for a specific day.
+
+    Args:
+        day: Day to show the dashboard.
+
+    Returns:
+        Rendered template with the dashboard page.
+    """
 
     if day == 0:
         selected_day = request.args.get("day", "1")
