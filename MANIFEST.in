@@ -1,0 +1,3 @@
+recursive-include src/app/templates *
+recursive-include src/app/static *
+exclude src/app/static/network_logs.json
