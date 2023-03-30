@@ -80,7 +80,7 @@ def api_search() -> flask.Response:
         JSON object with the search results.
 
     Examples:
-        >>> curl -X GET "http://localhost:5000/api/search?query=39day=1"
+        >>> curl -X GET "http://localhost:5000/api/search?query=39&day=1"
     """
     hits = search_helper()
     for hit in hits:
