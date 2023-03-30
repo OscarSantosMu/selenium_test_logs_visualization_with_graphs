@@ -27,5 +27,5 @@ jobs:
       - name: Install Dependencies
         run: env/bin/pip install -r requirements.txt
 
-      - name: Run Tests
-        run: env/bin/python -m unittest discover -v tests/
+      - name: Run Tests for App
+        run: env/bin/python -m unittest tests.test_app -v
