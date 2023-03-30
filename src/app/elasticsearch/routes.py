@@ -1,12 +1,11 @@
-import json
 import string
-from datetime import datetime
 
-from flask import jsonify, render_template, request, Blueprint
+from flask import jsonify, render_template, request, url_for, Blueprint
 from elasticsearch import ApiError, TransportError
 
 from .. import es
-from ..main.utils import read_logs
+from ..graphs.utils import read_logs
+from .utils import perform_elasticsearch_query
 
 elasticsearch = Blueprint("elasticsearch", __name__)
 
@@ -44,61 +43,24 @@ def upload_documents():
     return {}
 
 
-@elasticsearch.route("/api/search", methods=["POST", "GET"])
 @elasticsearch.route("/search", methods=["POST"])
 def search():
-    # Get the search query from the form or query parameters, depending on the request method
-    if request.method == "POST":
-        search_query = request.form["query"]
-        fields = []
-        if "day" in request.form:
-            fields.append("day")
-        if "mime_types" in request.form:
-            fields.append("mime_types")
-        if "mime_types_count" in request.form:
-            fields.append("mime_types_count")
-        if "status_codes" in request.form:
-            fields.append("status_codes")
-        if "status_codes_count" in request.form:
-            fields.append("status_codes_count")
-    elif request.method == "GET":
-        search_query = request.args.get("query")
-        fields = []
-        if "day" in request.args:
-            fields.append("day")
-        if "mime_types" in request.args:
-            fields.append("mime_types")
-        if "mime_types_count" in request.args:
-            fields.append("mime_types_count")
-        if "status_codes" in request.args:
-            fields.append("status_codes")
-        if "status_codes_count" in request.args:
-            fields.append("status_codes_count")
+    hits = search_helper()
+    return render_template("query_results.html", hits=hits)
 
-    if search_query is None:
-        return jsonify({})
-    elif search_query in string.whitespace:
-        return render_template("query_results.html", hits=[])
 
-    # Call a separate function to perform the Elasticsearch query
-    resp = perform_elasticsearch_query(search_query, fields)
-
-    if request.path.startswith("/api"):
-        # If the request is for the API endpoint, return the search results as JSON
-        for hit in resp["hits"]["hits"]:
-            if hit["_source"]["mime_types"] != 0.0:
-                hit["_source"]["mime_types_count"] = int(
-                    hit["_source"]["mime_types_count"]
-                )
-            if hit["_source"]["status_codes"] != 0.0:
-                hit["_source"]["status_codes"] = int(hit["_source"]["status_codes"])
-                hit["_source"]["status_codes_count"] = int(
-                    hit["_source"]["status_codes_count"]
-                )
-        return jsonify(resp["hits"]["hits"])
-    else:
-        # If the request is for the regular endpoint, render the search results as HTML
-        return render_template("query_results.html", hits=resp["hits"]["hits"])
+@elasticsearch.route("/api/search", methods=["POST", "GET"])
+def api_search():
+    hits = search_helper()
+    for hit in hits:
+        if hit["_source"]["mime_types"] != 0.0:
+            hit["_source"]["mime_types_count"] = int(hit["_source"]["mime_types_count"])
+        if hit["_source"]["status_codes"] != 0.0:
+            hit["_source"]["status_codes"] = int(hit["_source"]["status_codes"])
+            hit["_source"]["status_codes_count"] = int(
+                hit["_source"]["status_codes_count"]
+            )
+    return jsonify(hits)
 
 
 @elasticsearch.route("/api/search/<int:id>")
@@ -123,16 +85,44 @@ def api_delete_by(id: int):
     return jsonify({})
 
 
-def perform_elasticsearch_query(search_query, fields):
-    # Create the Elasticsearch query using the search query and fields
-    query = {"query": {"multi_match": {"query": search_query, "fields": fields}}}
+def search_helper():
+    # Get the search query from the form or query parameters, depending on the request method
+    if request.method == "POST":
 
-    try:
-        return es.search(index="logs-index", body=query)
+        search_query = request.form["query"]
+        fields = []
+        if "day" in request.form:
+            fields.append("day")
+        if "mime_types" in request.form:
+            fields.append("mime_types")
+        if "mime_types_count" in request.form:
+            fields.append("mime_types_count")
+        if "status_codes" in request.form:
+            fields.append("status_codes")
+        if "status_codes_count" in request.form:
+            fields.append("status_codes_count")
+    elif request.method == "GET":
 
-    except ApiError as err:
-        print(err.meta.status)
-        print(err.meta.headers)
-        print(err.body)
-    except TransportError as err:
-        print(err)
+        search_query = request.args.get("query")
+        fields = []
+        if "day" in request.args:
+            fields.append("day")
+        if "mime_types" in request.args:
+            fields.append("mime_types")
+        if "mime_types_count" in request.args:
+            fields.append("mime_types_count")
+        if "status_codes" in request.args:
+            fields.append("status_codes")
+        if "status_codes_count" in request.args:
+            fields.append("status_codes_count")
+
+    if search_query is None:
+        return {}
+
+    if search_query in string.whitespace:
+        return []
+
+    # Call a separate function to perform the Elasticsearch query
+    resp = perform_elasticsearch_query(search_query, fields)
+
+    return resp["hits"]["hits"]

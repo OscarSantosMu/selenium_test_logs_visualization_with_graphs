@@ -25,8 +25,10 @@ def create_app():
 
     from .main.routes import main
     from .elasticsearch.routes import elasticsearch
+    from .graphs.routes import graphs
 
     app.register_blueprint(main)
     app.register_blueprint(elasticsearch)
+    app.register_blueprint(graphs)
 
     return app
