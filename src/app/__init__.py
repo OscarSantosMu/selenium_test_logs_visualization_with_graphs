@@ -1,3 +1,9 @@
+"""
+.. include:: ../../README.md
+
+# Getting Started
+"""
+
 import json
 
 from flask import Flask
