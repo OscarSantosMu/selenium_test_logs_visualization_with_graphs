@@ -1,77 +1,170 @@
-## LambdaTest
+## LambdaTest Challenge
 
-[![LambdaTest_Logo](https://www.lambdatest.com/resources/images/guideline/ltlambdabrand.svg)](https://www.lambdatest.com/)
-<!-- <img src="https://www.lambdatest.com/resources/images/guideline/ltlambdabrand.svg"  width="600" height="300"> -->
-
-### Company information 
-[LambdaTest](https://www.lambdatest.com/) is a continuous quality testing cloud platform that helps developers and testers ship code faster. Over 2 Million users across 130 countries and leading enterprises rely on LambdaTest for their testing needs. LambdaTest platform provides secure, scalable, and insightful test orchestration for customers at different points in their DevOps (CI/CD) lifecycle
-
-### Why participate in an Octernship with LambdaTest
-
-LambdaTest is building a seamless omnichannel digital experience testing platform for modern businesses across industries. Think of us as the test execution and orchestration backbone for leading global digital businesses. We work closely with the larger open-source and testing community through a lot of our initiatives.
-
-One of LambdaTest’s major product components is our visualization offering. In this role, you will get a chance to work as a full-stack engineer for this offering. You will specifically be working on graphs and logs that are crucial for development teams to understand various aspects of their test execution. You’ll work closely with our engineering and product teams and get to do both the engineering and documentation parts of the process. Your work will be a game changer for more than 2mn users, across 10,000+ companies and 130+ countries.
-
-### Octernship Role Description
-<!--- Use this section to describe the role in as much detail as necessary. Please include the GitHub Classroom assignment submission date, length of the Octernship, and the monthly stipend --->
-We're looking for a full-stack developer to join our engineering team. 
-
-| Octernship info  | Timelines and Stipend |
-| ------------- | ------------- |
-| Assignment Deadline  | 8 April 2023  |
-| Octernship Duration  | 3 Months  |
-| Monthly Stipend  | $500 USD  |
-
-### Recommended qualifications
-<!--- Use this section to describe what skills a student might need to complete the problem statement on GitHub Classroom --->
-- Experience with Git & GitHub
-- Writing modern JavaScript/Node.js/Golang/Python
-- Passion for open source & web standards
-
-### Eligibility
-To participate, you must be:
-* A [verified student](https://education.github.com/discount_requests/pack_application) on Global Campus
-* 18 years or older
-* Active contributor on GitHub (monthly)
-
-# Assignment
 ## Test Logs Visualization with Graphs
 As a company, I run ~2 Million Selenium test Network logs a day on cloud. Build an ability to graphically visualize the logs using a low end resource cloud architecture framework. This code should be able to package and run on self-hosted machines or on cloud with proxy settings and public APIs for subscribed customers. 
 
 
-### Task instructions
+## Required for this challenge
 
-The following are the prerequisites for the task: 
-- Setup Selenium on your local machine 
-- Write the script for opening the URL (https://www.lambdatest.com/) 
-- Click on each header navigation items 
-- Store the network logs generated on the browser to your local machine. 
-- Repeat the process for more than 100 tests
+What I did:
 
-The following are the requirements for the task: 
-Use a lightweight graph library which can render a time series of 365 days on the x-axis and y-axis should be the following: 
-- Total count of logs 
-- Logs count/average stacked by log type (mime-type)
-- Logs count/average stacked by log level (Status Codes) 
-- Logs should be able to filter on the UI by any available key-value. 
-- Logs should be searchable with a keyword using an API to fetch the results. 
+- [x] Setup Selenium on my local machine.
+- [x] Wrote a script to open the URL https://www.lambdatest.com/
+- [x] Click on each header navigation items.
+- [x] Stored the network logs generated on the browser to my local machine.
+- [x] Repeated the process for more than 100 tests.
+- [x] Used a lightweight graph library to render a time series of 365 days on the x-axis and y-axis with the following metrics:
+    - [x] Total count of logs.
+    - [x] Logs count/average stacked by log type (mime-type).
+    - [x] Logs count/average stacked by log level (Status Codes).
+    - [x] Logs should be able to filter on the UI by any available key-value.
+    - [x] Logs should be searchable with a keyword using an API to fetch the results.
+- [x] Used the GitHub Flow when working on the task (PRs and issues were made in a different private repo)
+- [x] Packaged the code and can run on self-hosted machines or on cloud with proxy settings and public APIs for subscribed customers.
 
-You can use the recommended tech stack for developing this fullstack application: 
-- ElasticSearch or any text search engine. 
-- ReactJS 
-- Go lang (or) Python for server 
+## Bonus
 
-### Task Expectations:
-Students are expected to use the GitHub Flow when working on their task. This includes
+What I added:
 
-1. Making changes on the auto generated `feedback` branch to complete the task
-2. Using the auto generated **Feedback Pull Request** for review and submission
-3. Using GitHub Discussions to ask any relevant questions regarding the project
+- [x] Automated log storage
+This allowed me to run the selenium script whenever I wanted without worrying about existing logs and not not overloading the lambdatest server with my requests or incurring in request limit rates.
 
-### Resources
-- Install [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-- Sample GitHub [Issue](https://github.com/npm/cli/issues/6051)
-- [ElasticSearch](https://www.elastic.co/guide/index.html) documentation
-- [ReactJS](https://reactjs.org/docs/getting-started.html) documentation
-- [Go lang](https://go.dev/doc/) or [Python](https://www.python.org/doc/) documentation
-- [Gin](https://gin-gonic.com/docs/) or [FastAPI](https://fastapi.tiangolo.com/) documentation
+    Where?
+        - [generate-logs.py](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/e01b5164c287fccf19e9ac8fd242137656715bf1/src/scripts/generate-logs.py#L45)
+        - [execute-script.py](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/main/src/scripts/execute-script.py)
+
+- [x] Built a dashboard with bar charts specific to each day
+This is helpful for a user that wants to see the a query filtered by day in a chart.
+
+    Where?
+        - [graphs/routes.py](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/e01b5164c287fccf19e9ac8fd242137656715bf1/src/app/graphs/routes.py#L58)
+
+- [x] Added caching to improve performance by preventing the file being loaded to memory for each request
+
+    Where?
+        - [app/__init__.py](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/e01b5164c287fccf19e9ac8fd242137656715bf1/src/app/__init__.py#L29)
+        - [graphs/utils.py](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/e01b5164c287fccf19e9ac8fd242137656715bf1/src/app/graphs/utils.py#L15)
+
+
+- [x] Created an API to handle CRUD operations with an Elasticsearch index
+This allowed me to easily upload and interact with the logs and make changes to them as needed.
+
+    Where?
+        - [elasticsearch/routes.py](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/main/src/app/elasticsearch/routes.py)
+
+- [x] Added tests that cover some endpoints and created a CI pipeline for them
+
+    Where?
+        - [tests_utils.py](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/main/tests/test_utils.py)
+        - [test_app.py](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/main/tests/test_app.py)
+        - [test.yml](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/main/.github/workflows/test.yml)
+
+
+- [x] Generated auto-generated self-hosted docs
+This is helpful for users to understand how to interact with the API, the routes and access the logs.
+
+    Where?
+        - Everywhere 😀
+
+    <sub>Windows</sub>
+    ```console
+    python -m venv env
+    env\Scripts\activate
+    pip install -r requirements.txt
+    cd src && pdoc app
+    ```
+
+## Getting started
+
+1. [Clone the code repository](#clone-the-code-repository)
+2. [Setup a Python virtual environment](#setup-a-python-virtual-environment)
+3. [What is missing in the repo to try the app?](#what-is-missing-in-the-repo-to-try-the-app)
+    1. [Steps for network_logs.json](#steps-for-network_logsjson)
+    2. [Steps for .env](#steps-for-env)
+4. [Install and Setup Elasticsearch](#install-and-setup-elasticsearch)
+5. [Run the app](#run-the-app)
+
+### Clone the code repository
+
+```console
+git clone https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs.git
+```
+```console
+cd selenium_test_logs_visualization_with_graphs
+```
+
+### Setup a Python virtual environment
+
+```console
+python -m venv env
+env\Scripts\activate
+pip install -r requirements.txt
+```
+
+### What is missing in the repo to try the app?
+
+1. network_logs.json
+2. .env
+
+network_logs.json \- There are [size limits](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github). To track files beyond this limit, you must use Git Large File Storage [(Git LFS)](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage). But network_logs.json is generated by the code and it makes no sense to add it with Git LFS. 
+
+.env \- should be added since the code gets some environment variables from it.
+
+
+#### Steps for network_logs.json
+
+Run either generate-logs.py or execute-script.py
+
+[generate-logs.py](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/main/src/scripts/generate-logs.py) will generate a single run. It will create the file if it does not exist or append<sup>1</sup> data to the file if it does exist.
+> <sup>1</sup> despite the code overrides the file with a write mode operation it actually apends at the end because of the code logic.
+
+[execute-script.py](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/main/src/scripts/execute-script.py) by default will repeat the process 100 times and it will take between 1-2 hours depending on your system, because in addition to waiting the specified time in sleep function, it will take time for the script to save the *large file*<sup>2</sup> to the disk.
+> <sup>2</sup> For me it was 807 MB
+
+#### Steps for .env
+
+Create the .env file and add your environment variables
+```
+HOST=localhost
+ELASTIC_PASSWORD="the password you got from bin\elasticsearch.bat"
+CA_CERTS_PATH=C:\path_to_your_elasticsearch_folder\config\certs\http_ca.crt
+```
+
+### Install and Setup Elasticsearch
+
+1. [Install](https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html)
+2. [Setup](https://www.elastic.co/guide/en/elasticsearch/reference/current/configuring-stack-security.html)
+
+### Run the app
+
+```py
+cd src
+python run.py
+```
+
+## Demo
+
+### App
+
+https://user-images.githubusercontent.com/38818848/228836250-02174ba4-3c97-40fa-9576-eceb7d892498.mp4
+
+### Docs and API
+
+https://user-images.githubusercontent.com/38818848/228836323-d8fdf790-f6ab-4ef9-9f54-b3570f625586.mp4
+
+
+## Notes
+
+1. I found better to assign each run\_id of 100 to a day in the time-series graph since the dashboard shows my features better than it would by using the timestamps of a single day and displaying all logs in a time-series of 365 days.
+
+## Potential improvements outside of this assignment scope.
+
+1. Modify code logic to use append mode operation to avoid loading a big file and then writing again from scratch.
+2. Save the file to a remote cloud storage system and retrieve logs with a NoSQL Database.
+3. UI/UX.
+4. Separate API from server and add swagger-based documentation for it.
+5. Performance.
+6. Move elasticsearch to managed cloud-hosted cluster.
+7. Deploy docs.
+
+
