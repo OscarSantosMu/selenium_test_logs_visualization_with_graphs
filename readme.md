@@ -19,7 +19,7 @@ What I did:
     - [x] Logs count/average stacked by log level (Status Codes).
     - [x] Logs should be able to filter on the UI by any available key-value.
     - [x] Logs should be searchable with a keyword using an API to fetch the results.
-- [x] [Used the GitHub Flow when working on the task](https://github.com/LambdaTest-GitHub-Octernship/lambdatest_selenium_test_logs_visualization_with_graphs-OscarSantosMu/releases/tag/v1.0.0).
+- [x] Used the GitHub Flow when working on the task (PRs and issues were made in a different private repo)
 - [x] Packaged the code and can run on self-hosted machines or on cloud with proxy settings and public APIs for subscribed customers.
 
 ## Bonus
@@ -30,34 +30,34 @@ What I added:
 This allowed me to run the selenium script whenever I wanted without worrying about existing logs and not not overloading the lambdatest server with my requests or incurring in request limit rates.
 
     Where?
-        - [generate-logs.py](https://github.com/LambdaTest-GitHub-Octernship/lambdatest_selenium_test_logs_visualization_with_graphs-OscarSantosMu/blob/55c8c0be0b28f3fc6b31a97c40292119ff94e5fb/src/scripts/generate-logs.py#L45)
-        - [execute-script.py](https://github.com/LambdaTest-GitHub-Octernship/lambdatest_selenium_test_logs_visualization_with_graphs-OscarSantosMu/blob/main/src/scripts/execute-script.py)
+        - [generate-logs.py](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/e01b5164c287fccf19e9ac8fd242137656715bf1/src/scripts/generate-logs.py#L45)
+        - [execute-script.py](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/main/src/scripts/execute-script.py)
 
 - [x] Built a dashboard with bar charts specific to each day
 This is helpful for a user that wants to see the a query filtered by day in a chart.
 
     Where?
-        - [graphs/routes.py](https://github.com/LambdaTest-GitHub-Octernship/lambdatest_selenium_test_logs_visualization_with_graphs-OscarSantosMu/blob/55c8c0be0b28f3fc6b31a97c40292119ff94e5fb/src/app/graphs/routes.py#L58)
+        - [graphs/routes.py](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/e01b5164c287fccf19e9ac8fd242137656715bf1/src/app/graphs/routes.py#L58)
 
 - [x] Added caching to improve performance by preventing the file being loaded to memory for each request
 
     Where?
-        - [app/__init__.py](https://github.com/LambdaTest-GitHub-Octernship/lambdatest_selenium_test_logs_visualization_with_graphs-OscarSantosMu/blob/55c8c0be0b28f3fc6b31a97c40292119ff94e5fb/src/app/__init__.py#L29)
-        - [graphs/utils.py](https://github.com/LambdaTest-GitHub-Octernship/lambdatest_selenium_test_logs_visualization_with_graphs-OscarSantosMu/blob/55c8c0be0b28f3fc6b31a97c40292119ff94e5fb/src/app/graphs/utils.py#L15)
+        - [app/__init__.py](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/e01b5164c287fccf19e9ac8fd242137656715bf1/src/app/__init__.py#L29)
+        - [graphs/utils.py](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/e01b5164c287fccf19e9ac8fd242137656715bf1/src/app/graphs/utils.py#L15)
 
 
 - [x] Created an API to handle CRUD operations with an Elasticsearch index
 This allowed me to easily upload and interact with the logs and make changes to them as needed.
 
     Where?
-        - [elasticsearch/routes.py](https://github.com/LambdaTest-GitHub-Octernship/lambdatest_selenium_test_logs_visualization_with_graphs-OscarSantosMu/blob/55c8c0be0b28f3fc6b31a97c40292119ff94e5fb/src/app/elasticsearch/routes.py)
+        - [elasticsearch/routes.py](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/main/src/app/elasticsearch/routes.py)
 
 - [x] Added tests that cover some endpoints and created a CI pipeline for them
 
     Where?
-        - [tests_utils.py](https://github.com/LambdaTest-GitHub-Octernship/lambdatest_selenium_test_logs_visualization_with_graphs-OscarSantosMu/blob/main/tests/test_utils.py)
-        - [test_app.py](https://github.com/LambdaTest-GitHub-Octernship/lambdatest_selenium_test_logs_visualization_with_graphs-OscarSantosMu/blob/main/tests/test_app.py)
-        - [test.yml](https://github.com/LambdaTest-GitHub-Octernship/lambdatest_selenium_test_logs_visualization_with_graphs-OscarSantosMu/blob/main/.github/workflows/test.yml)
+        - [tests_utils.py](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/main/tests/test_utils.py)
+        - [test_app.py](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/main/tests/test_app.py)
+        - [test.yml](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/main/.github/workflows/test.yml)
 
 
 - [x] Generated auto-generated self-hosted docs
@@ -87,10 +87,10 @@ This is helpful for users to understand how to interact with the API, the routes
 ### Clone the code repository
 
 ```console
-git clone https://github.com/LambdaTest-GitHub-Octernship/lambdatest_selenium_test_logs_visualization_with_graphs-OscarSantosMu.git
+git clone https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs.git
 ```
 ```console
-cd lambdatest_selenium_test_logs_visualization_with_graphs-OscarSantosMu
+cd selenium_test_logs_visualization_with_graphs
 ```
 
 ### Setup a Python virtual environment
@@ -115,10 +115,10 @@ network_logs.json \- There are [size limits](https://docs.github.com/en/reposito
 
 Run either generate-logs.py or execute-script.py
 
-[generate-logs.py](https://github.com/LambdaTest-GitHub-Octernship/lambdatest_selenium_test_logs_visualization_with_graphs-OscarSantosMu/blob/55c8c0be0b28f3fc6b31a97c40292119ff94e5fb/src/scripts/generate-logs.py) will generate a single run. It will create the file if it does not exist or append<sup>1</sup> data to the file if it does exist.
+[generate-logs.py](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/main/src/scripts/generate-logs.py) will generate a single run. It will create the file if it does not exist or append<sup>1</sup> data to the file if it does exist.
 > <sup>1</sup> despite the code overrides the file with a write mode operation it actually apends at the end because of the code logic.
 
-[execute-script.py](https://github.com/LambdaTest-GitHub-Octernship/lambdatest_selenium_test_logs_visualization_with_graphs-OscarSantosMu/blob/main/src/scripts/execute-script.py) by default will repeat the process 100 times and it will take between 1-2 hours depending on your system, because in addition to waiting the specified time in sleep function, it will take time for the script to save the *large file*<sup>2</sup> to the disk.
+[execute-script.py](https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/blob/main/src/scripts/execute-script.py) by default will repeat the process 100 times and it will take between 1-2 hours depending on your system, because in addition to waiting the specified time in sleep function, it will take time for the script to save the *large file*<sup>2</sup> to the disk.
 > <sup>2</sup> For me it was 807 MB
 
 #### Steps for .env
@@ -146,11 +146,11 @@ python run.py
 
 ### App
 
-![](https://user-images.githubusercontent.com/38818848/228836250-02174ba4-3c97-40fa-9576-eceb7d892498.mp4)
+https://user-images.githubusercontent.com/38818848/228836250-02174ba4-3c97-40fa-9576-eceb7d892498.mp4
 
 ### Docs and API
 
-![](https://user-images.githubusercontent.com/38818848/228836323-d8fdf790-f6ab-4ef9-9f54-b3570f625586.mp4)
+https://user-images.githubusercontent.com/38818848/228836323-d8fdf790-f6ab-4ef9-9f54-b3570f625586.mp4
 
 
 ## Notes
@@ -160,11 +160,11 @@ python run.py
 ## Potential improvements outside of this assignment scope.
 
 1. Modify code logic to use append mode operation to avoid loading a big file and then writing again from scratch.
-2. As mentioned in #2 save the file to a remote cloud storage system and retrieve logs with a NoSQL Database.
-3. As mentioned in #4 UI/UX.
-4. As mentioned in #6 separate API from server and swagger-based documentation for it.
-5. As mentioned in #6 performance.
-6. As mentioned in #6 move elasticsearch to managed cloud-hosted cluster.
-7. As mentioned in #8 deploy docs.
+2. Save the file to a remote cloud storage system and retrieve logs with a NoSQL Database.
+3. UI/UX.
+4. Separate API from server and add swagger-based documentation for it.
+5. Performance.
+6. Move elasticsearch to managed cloud-hosted cluster.
+7. Deploy docs.
 
 
