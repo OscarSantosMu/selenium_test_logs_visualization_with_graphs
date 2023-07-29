@@ -74,6 +74,17 @@ This is helpful for users to understand how to interact with the API, the routes
     cd src && pdoc app
     ```
 
+
+## Demo
+
+### App
+
+https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/assets/38818848/313f73b5-50a2-4c86-a4bb-cd73d2b7ef13
+
+### Docs and API
+
+https://github.com/OscarSantosMu/selenium_test_logs_visualization_with_graphs/assets/38818848/38fdbf60-7955-496d-999a-b3222b5e4d47
+
 ## Getting started
 
 1. [Clone the code repository](#clone-the-code-repository)
@@ -141,17 +152,6 @@ CA_CERTS_PATH=C:\path_to_your_elasticsearch_folder\config\certs\http_ca.crt
 cd src
 python run.py
 ```
-
-## Demo
-
-### App
-
-https://user-images.githubusercontent.com/38818848/228836250-02174ba4-3c97-40fa-9576-eceb7d892498.mp4
-
-### Docs and API
-
-https://user-images.githubusercontent.com/38818848/228836323-d8fdf790-f6ab-4ef9-9f54-b3570f625586.mp4
-
 
 ## Notes
 
